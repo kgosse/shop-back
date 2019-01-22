@@ -1,23 +1,34 @@
-# Data Modeling(done)
-• define the models(done)
-• create the models(done)
-  - product (done)
-  - cart (done)
-  - whishlist (done)
-  - user (done)
+- Data Modeling(done)
+  - define the models(done)
+  - create the models(done)
+    - product (done)
+    - cart (done)
+    - whishlist (done)
+    - user (done)
 
-# Authentification(done)
-- /login: generate token(done)
-- /signup: create new user(done)
+- Authentification(done)
+  - /login: generate token(done)
+  - /signup: create new user(done)
 
-# Authorization(done)
-- create middleware(done)
-- use middleware(done)
+- Authorization(done)
+  - create middleware(done)
+  - use middleware(done)
 
-- organise rbac_policy.csv
-- implement missing routes
+* create role table
+* create user_roles table
+* delete role column in user table
+* add Roles property in user model
+* require user to be admin in order to access admin resources
+  * create api admin namespace
+  * add rbac middleware
+* log in an admin
+* populate DB with products
+* populate DB with users
 
-# docker
-- create image
-- push it to hub.docker.com
-- create docker-compose in order to try it with a front app (shop)
+* organise rbac_policy.csv
+* implement missing routes
+
+* docker
+  * create image
+  * push it to hub.docker.com
+  * create docker-compose in order to try it with a front app (shop)
