@@ -1,0 +1,6 @@
+- id: "product.created.success"
+  translation: "Product was successfully created."
+- id: "product.updated.success"
+  translation: "Product was successfully updated."
+- id: "product.destroyed.success"
+  translation: "Product was successfully destroyed."

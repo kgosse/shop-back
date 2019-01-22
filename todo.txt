@@ -1,0 +1,23 @@
+# Data Modeling(done)
+• define the models(done)
+• create the models(done)
+  - product (done)
+  - cart (done)
+  - whishlist (done)
+  - user (done)
+
+# Authentification(done)
+- /login: generate token(done)
+- /signup: create new user(done)
+
+# Authorization(done)
+- create middleware(done)
+- use middleware(done)
+
+- organise rbac_policy.csv
+- implement missing routes
+
+# docker
+- create image
+- push it to hub.docker.com
+- create docker-compose in order to try it with a front app (shop)

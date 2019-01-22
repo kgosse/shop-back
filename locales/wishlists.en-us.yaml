@@ -1,0 +1,6 @@
+- id: "wishlist.created.success"
+  translation: "Wishlist was successfully created."
+- id: "wishlist.updated.success"
+  translation: "Wishlist was successfully updated."
+- id: "wishlist.destroyed.success"
+  translation: "Wishlist was successfully destroyed."
