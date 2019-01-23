@@ -15,7 +15,7 @@
   - use middleware(done)
 
 - create roles table - migration (done)
-* create user_roles table
+- create user_roles table - migration (done)
 * delete role column in user table
 * add Roles property in user model
 * require user to be admin in order to access admin resources
@@ -24,6 +24,7 @@
 * log in an admin
 * populate DB with products
 * populate DB with users
+* add foreign keys
 
 * organise rbac_policy.csv
 * implement missing routes
