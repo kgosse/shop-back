@@ -14,7 +14,7 @@
   - create middleware(done)
   - use middleware(done)
 
-* create role table
+- create roles table - migration (done)
 * create user_roles table
 * delete role column in user table
 * add Roles property in user model

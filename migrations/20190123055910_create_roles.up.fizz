@@ -1,0 +1,4 @@
+create_table("roles") {
+	t.Column("id", "uuid", {primary: true})
+	t.Column("role", "string", {})
+}
