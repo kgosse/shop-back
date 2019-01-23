@@ -17,6 +17,10 @@
 - create roles table - migration (done)
 - create user_roles table - migration (done)
 * delete role column in user table
+  * migrate down
+  * delete role colum in user migration
+  * delete role colum in user model
+  * migrate up
 * add Roles property in user model
 * require user to be admin in order to access admin resources
   * create api admin namespace
