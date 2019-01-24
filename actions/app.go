@@ -107,6 +107,7 @@ func App() *buffalo.App {
 		// wr := api.Resource("/products", pr)
 		api.Resource("/products", pr)
 		// wr.Middleware.Skip(tauth, pr.List)
+		app.Resource("/roles", RolesResource{})
 	}
 
 	return app

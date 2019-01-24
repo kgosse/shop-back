@@ -1,0 +1,6 @@
+- id: "role.created.success"
+  translation: "Role was successfully created."
+- id: "role.updated.success"
+  translation: "Role was successfully updated."
+- id: "role.destroyed.success"
+  translation: "Role was successfully destroyed."
