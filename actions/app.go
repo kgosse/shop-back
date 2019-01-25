@@ -17,7 +17,7 @@ import (
 	contenttype "github.com/gobuffalo/mw-contenttype"
 	tokenauth "github.com/gobuffalo/mw-tokenauth"
 	"github.com/gobuffalo/x/sessions"
-	"github.com/kgosse/training/golang/src/projects/shop/models"
+	"github.com/kgosse/shop-back/models"
 	"github.com/rs/cors"
 )
 

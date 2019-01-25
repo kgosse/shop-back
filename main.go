@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/kgosse/training/golang/src/projects/shop/actions"
+	"github.com/kgosse/shop-back/actions"
 )
 
 // main is the starting point for your Buffalo application.

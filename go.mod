@@ -1,1 +1,1 @@
-module github.com/kgosse/training/golang/src/projects/shop
+module github.com/kgosse/shop-back

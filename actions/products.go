@@ -3,7 +3,7 @@ package actions
 import (
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
-	"github.com/kgosse/training/golang/src/projects/shop/models"
+	"github.com/kgosse/shop-back/models"
 	"github.com/pkg/errors"
 )
 

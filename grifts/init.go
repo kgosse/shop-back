@@ -2,7 +2,7 @@ package grifts
 
 import (
 	"github.com/gobuffalo/buffalo"
-	"github.com/kgosse/training/golang/src/projects/shop/actions"
+	"github.com/kgosse/shop-back/actions"
 )
 
 func init() {
