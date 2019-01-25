@@ -13,7 +13,7 @@ import (
 	"github.com/gobuffalo/envy"
 	"github.com/gobuffalo/pop"
 	"github.com/gobuffalo/pop/nulls"
-	"github.com/kgosse/training/golang/src/projects/shop/models"
+	"github.com/kgosse/shop-back/models"
 	"github.com/pkg/errors"
 )
 
@@ -83,7 +83,76 @@ func (v UsersResource) Login(c buffalo.Context) error {
 	}
 
 	claims := MyCustomClaims{
-		user.Role.String,
+		"member",
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(7 * 24 * time.Hour).Unix(),
+			Issuer:    fmt.Sprintf("%s.api.shop", envy.Get("GO_ENV", "development")),
+			Id:        user.ID.String(),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	jwtSecret := []byte(envy.Get("JWT_SECRET", "JesusIsGod"))
+	tokenString, err := token.SignedString(jwtSecret)
+
+	if err != nil {
+		return fmt.Errorf("could not sign token, %v", err)
+	}
+
+	return c.Render(200, r.JSON(map[string]interface{}{"token": tokenString, "user": user}))
+}
+
+// LoginAdmin logs in an admin. This function is
+// mapped to the path GET admin/auth/login
+func (v UsersResource) LoginAdmin(c buffalo.Context) error {
+	var req LoginRequest
+	err := c.Bind(&req)
+
+	if err != nil {
+		return c.Error(http.StatusBadRequest, err)
+	}
+
+	pwd := req.Password
+	if len(pwd) == 0 {
+		return c.Error(http.StatusBadRequest, errors.New("Invalid password"))
+	}
+
+	email := req.Email
+	if checkmail.ValidateFormat(email) != nil {
+		return c.Error(http.StatusBadRequest, errors.New("Invalid email"))
+	}
+
+	// Get the DB connection from the context
+	tx, ok := c.Value("tx").(*pop.Connection)
+	if !ok {
+		return errors.WithStack(errors.New("no transaction found"))
+	}
+
+	// Allocate an empty User
+	user := &models.User{}
+
+	// To find the User the parameter user_id is used.
+	log.Printf("email = %v and password = %v\n", req.Email, req.Password)
+	if err := tx.Eager().Where("email = ? and password = ?", req.Email, req.Password).First(user); err != nil {
+		log.Println(err)
+		return c.Error(http.StatusBadRequest, errors.New("Invalid credentials"))
+	}
+
+	// The user should be an admin
+	isAdmin := false
+	for _, r := range user.Roles {
+		if r.Role == "admin" {
+			isAdmin = true
+		}
+	}
+
+	if isAdmin == false {
+		return errors.WithStack(errors.New("you are not admin"))
+	}
+
+	claims := MyCustomClaims{
+		"admin",
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(7 * 24 * time.Hour).Unix(),
 			Issuer:    fmt.Sprintf("%s.api.shop", envy.Get("GO_ENV", "development")),

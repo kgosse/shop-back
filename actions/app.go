@@ -93,11 +93,18 @@ func App() *buffalo.App {
 		api.Use(tauth)
 		api.Use(mwCashbin)
 
+		adminAPI := app.Group("/v1/admin")
+		adminAPI.Use(tauth)
+		adminAPI.Use(mwCashbin)
+
 		pr := ProductsResource{}
 		ur := UsersResource{}
 
 		api.POST("auth/login", ur.Login)
 		api.Middleware.Skip(tauth, ur.Login)
+
+		adminAPI.POST("auth/login", ur.LoginAdmin)
+		adminAPI.Middleware.Skip(tauth, ur.LoginAdmin)
 
 		api.Resource("/wishlists", WishlistsResource{})
 
