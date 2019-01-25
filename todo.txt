@@ -21,9 +21,9 @@
   - delete role colum in user model(done)
   - migrate up(done)
 - add Roles property in user model(done)
-* fix cart modeling
-* fix cart migration
-* create cart_products migration
+- fix cart modeling(done)
+- fix cart migration(done)
+- create cart_products migration(done)
 * require user to be admin in order to access admin resources
   * create api admin namespace
   * add rbac middleware

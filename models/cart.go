@@ -10,14 +10,14 @@ import (
 	"github.com/gobuffalo/validate/validators"
 )
 
+// Cart is the model for cart table
 type Cart struct {
 	ID        uuid.UUID `json:"id" db:"id"`
 	CreatedAt time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
 	Status    string    `json:"status" db:"status"`
-	Quantity  int       `json:"quantity" db:"quantity"`
-	ProductID int       `json:"product_id" db:"product_id"`
 	UserID    int       `json:"user_id" db:"user_id"`
+	Products  Products  `many_to_many:"cart_products" db:"-"`
 }
 
 // String is not required by pop and may be deleted
@@ -40,8 +40,6 @@ func (c Carts) String() string {
 func (c *Cart) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.Validate(
 		&validators.StringIsPresent{Field: c.Status, Name: "Status"},
-		&validators.IntIsPresent{Field: c.Quantity, Name: "Quantity"},
-		&validators.IntIsPresent{Field: c.ProductID, Name: "ProductID"},
 		&validators.IntIsPresent{Field: c.UserID, Name: "UserID"},
 	), nil
 }

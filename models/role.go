@@ -15,7 +15,7 @@ type Role struct {
 	ID        uuid.UUID `json:"id" db:"id"`
 	CreatedAt time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
-	Role      string    `many_to_many:"user_roles" db:"-"`
+	Role      string    `json:"role" db:"role"`
 }
 
 // String is not required by pop and may be deleted

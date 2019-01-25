@@ -1,7 +1,5 @@
 create_table("carts") {
 	t.Column("id", "uuid", {primary: true})
 	t.Column("status", "string", {})
-	t.Column("quantity", "integer", {})
-	t.Column("product_id", "integer", {})
 	t.Column("user_id", "integer", {})
 }

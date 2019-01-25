@@ -19,7 +19,7 @@ type User struct {
 	Email           string    `json:"email" db:"email"`
 	Password        string    `json:"password" db:"password" rw:"w"`
 	ConfirmPassword string    `json:"confirm_password" db:"-"`
-	Roles           Roles     `json:"role" db:"role"`
+	Roles           Roles     `many_to_many:"user_roles" db:"-"`
 }
 
 // String is not required by pop and may be deleted
