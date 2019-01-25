@@ -12,7 +12,6 @@ import (
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/envy"
 	"github.com/gobuffalo/pop"
-	"github.com/gobuffalo/pop/nulls"
 	"github.com/kgosse/shop-back/models"
 	"github.com/pkg/errors"
 )
@@ -235,7 +234,7 @@ func (v UsersResource) Create(c buffalo.Context) error {
 		return errors.WithStack(err)
 	}
 
-	user.Role = nulls.NewString("member")
+	// user.Role = nulls.NewString("member")
 
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
