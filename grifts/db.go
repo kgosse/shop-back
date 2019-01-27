@@ -1,6 +1,8 @@
 package grifts
 
 import (
+	"fmt"
+
 	"github.com/gobuffalo/pop"
 	"github.com/kgosse/shop-back/models"
 	"github.com/markbates/grift/grift"
@@ -51,6 +53,7 @@ var _ = grift.Namespace("db", func() {
 			}
 			for _, m := range models {
 				if err := createModel(m, tx); err != nil {
+					fmt.Printf("%v", err)
 					return err
 				}
 			}
@@ -64,13 +67,10 @@ var _ = grift.Namespace("db", func() {
 })
 
 func createModel(r interface{}, tx *pop.Connection) error {
-	err := tx.Eager().Create(r)
-	if err != nil {
+	verrs, err := tx.Eager().ValidateAndCreate(r)
+	if err != nil || verrs.HasAny() {
 		return errors.WithStack(err)
 	}
 
-	// if verrs.HasAny() {
-	// 	return errors.WithStack(verrs)
-	// }
 	return nil
 }
