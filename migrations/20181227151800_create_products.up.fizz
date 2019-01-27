@@ -1,6 +1,7 @@
 create_table("products") {
 	t.Column("id", "uuid", {primary: true})
 	t.Column("name", "string", {})
+	t.Column("image_url", "string", {})
 	t.Column("description", "string", {null: true})
 	t.Column("price", "decimal", {})
 }

@@ -111,10 +111,11 @@ func App() *buffalo.App {
 		wur := api.Resource("/users", ur)
 		wur.Middleware.Skip(tauth, ur.Create, ur.List)
 
-		// wr := api.Resource("/products", pr)
-		api.Resource("/products", pr)
-		// wr.Middleware.Skip(tauth, pr.List)
-		app.Resource("/roles", RolesResource{})
+		wr := api.Resource("/products", pr)
+		wr.Middleware.Skip(tauth, pr.List)
+		// api.Resource("/products", pr)
+
+		api.Resource("/roles", RolesResource{})
 	}
 
 	return app

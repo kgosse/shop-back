@@ -2,6 +2,7 @@ package grifts
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/gobuffalo/pop"
 	"github.com/kgosse/shop-back/models"
@@ -42,17 +43,28 @@ var _ = grift.Namespace("db", func() {
 				Password: "anonymous",
 				Roles:    models.Roles{roleAnonymous},
 			}
-			// @todo
-			// default products
 
-			// db seeding
-			models := []interface{}{
+			// users and roles seeding
+			usersAndRoles := []interface{}{
 				userAdmin,
 				userMember,
 				userAnonymous,
 			}
-			for _, m := range models {
+			for _, m := range usersAndRoles {
 				if err := createModel(m, tx); err != nil {
+					fmt.Printf("%v", err)
+					return err
+				}
+			}
+
+			// products seeding
+			for i := 0; i < 20; i++ {
+				p := models.Product{
+					Name:     "Product " + strconv.Itoa(i),
+					ImageURL: "https://picsum.photos/350/250?image=" + strconv.Itoa(i),
+					Price:    17,
+				}
+				if err := createModel(&p, tx); err != nil {
 					fmt.Printf("%v", err)
 					return err
 				}

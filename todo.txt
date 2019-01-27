@@ -24,12 +24,12 @@
 - fix cart modeling(done)
 - fix cart migration(done)
 - create cart_products migration(done)
+- populate DB with products(done)
+- populate DB with users(done)
 * require user to be admin in order to access admin resources
   * create api admin namespace
   * add rbac middleware
 * log in an admin
-* populate DB with products
-* populate DB with users
 * add foreign keys
 
 * organise rbac_policy.csv

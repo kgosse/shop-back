@@ -11,11 +11,13 @@ import (
 	"github.com/gobuffalo/validate/validators"
 )
 
+// Product is the model for products table
 type Product struct {
 	ID          uuid.UUID    `json:"id" db:"id"`
 	CreatedAt   time.Time    `json:"created_at" db:"created_at"`
 	UpdatedAt   time.Time    `json:"updated_at" db:"updated_at"`
 	Name        string       `json:"name" db:"name"`
+	ImageURL    string       `json:"image_url" db:"image_url"`
 	Description nulls.String `json:"description" db:"description"`
 	Price       float64      `json:"price" db:"price"`
 }
@@ -40,6 +42,7 @@ func (p Products) String() string {
 func (p *Product) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.Validate(
 		&validators.StringIsPresent{Field: p.Name, Name: "Name"},
+		&validators.StringIsPresent{Field: p.ImageURL, Name: "ImageURL"},
 	), nil
 }
 
