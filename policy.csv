@@ -2,6 +2,7 @@ p, admin, /*, *
 p, anonymous, /login, *
 p, anonymous, /v1/users/, POST
 p, anonymous, /v1/auth/login/, POST
+p, anonymous, /v1/admin/auth/login/, POST
 p, anonymous, /v1/products/, GET
 p, member, /v1/products/, GET
 p, member, /member/*, *
